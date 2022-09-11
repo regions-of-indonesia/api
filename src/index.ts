@@ -1,11 +1,12 @@
 import fastify from "fastify";
 
-import { fastifyCorsPlugin, fastifyHelmetPlugin } from "./plugins";
+import { fastifyCorsPlugin, fastifyHelmetPlugin, fastifyCachingPlugin } from "./plugins";
 
 const app = fastify();
 
 app.register(fastifyCorsPlugin);
 app.register(fastifyHelmetPlugin);
+app.register(fastifyCachingPlugin);
 
 app.get("/", async (_request, _reply) => {
   return { hello: "world" };
