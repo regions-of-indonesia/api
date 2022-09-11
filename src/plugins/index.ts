@@ -13,7 +13,7 @@ const fastifyHelmetPlugin = fp(async (fastify) => {
 });
 
 const fastifyCachingPlugin = fp(async (fastify) => {
-  await fastify.register(fastifyCaching, { expiresIn: 24 * 60 * 60 });
+  await fastify.register(fastifyCaching, { privacy: fastifyCaching.privacy.PRIVATE, expiresIn: 86400 });
 });
 
 export { fastifyCorsPlugin, fastifyHelmetPlugin, fastifyCachingPlugin };
