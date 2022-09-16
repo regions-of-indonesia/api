@@ -2,18 +2,27 @@ import fp from "fastify-plugin";
 
 import fastifyCors from "@fastify/cors";
 import fastifyHelmet from "@fastify/helmet";
-import fastifyCaching from "@fastify/caching";
+import fastifySensible from "@fastify/sensible";
 
-const fastifyCorsPlugin = fp(async (fastify) => {
-  await fastify.register(fastifyCors);
-});
+const fastifyCorsPlugin = fp(
+  async (fastify) => {
+    await fastify.register(fastifyCors, { origin: "*" });
+  },
+  { name: "app/cors" }
+);
 
-const fastifyHelmetPlugin = fp(async (fastify) => {
-  await fastify.register(fastifyHelmet);
-});
+const fastifyHelmetPlugin = fp(
+  async (fastify) => {
+    await fastify.register(fastifyHelmet);
+  },
+  { name: "app/helmet" }
+);
 
-const fastifyCachingPlugin = fp(async (fastify) => {
-  await fastify.register(fastifyCaching, { privacy: fastifyCaching.privacy.PRIVATE, expiresIn: 86400 });
-});
+const fastifySensiblePlugin = fp(
+  async (fastify) => {
+    await fastify.register(fastifySensible);
+  },
+  { name: "app/sensible" }
+);
 
-export { fastifyCorsPlugin, fastifyHelmetPlugin, fastifyCachingPlugin };
+export { fastifyCorsPlugin, fastifyHelmetPlugin, fastifySensiblePlugin };
