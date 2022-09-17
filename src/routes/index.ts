@@ -253,7 +253,7 @@ const RootRoutes = async (fastify: FastifyInstance) => {
       provinces: await Province.search(text),
       districts: await District.search(text),
       subdistricts: await Subdistrict.search(text),
-      village: await Village.search(text),
+      villages: await Village.search(text),
     };
   });
 
