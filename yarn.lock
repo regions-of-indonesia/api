@@ -102,10 +102,10 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@regions-of-indonesia/data@^0.6.0":
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/@regions-of-indonesia/data/-/data-0.6.0.tgz#140aab28922b3835192f814e3ee69926a7fefe40"
-  integrity sha512-6iB68igYxaoklhavmM8f7p7I+TpedS9z6B3gt3iwznFBTC0LzbPIeayNI4mlFqkyWbTIVqUI+vLxxVoGKkx3GA==
+"@regions-of-indonesia/data@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@regions-of-indonesia/data/-/data-1.2.0.tgz#34e9b32b06c015c71cef7f4f15fcec4b4a2da491"
+  integrity sha512-w/KFkhB7PVmXKNL1lW7L0W4DnfWO3uDOCBSMzGMTCeLK7opDEMWuoNeFyeZcQcX0DxfY8Puc0kV02yED+/Jtcg==
 
 "@types/eslint-scope@^3.7.3":
   version "3.7.4"
