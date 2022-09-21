@@ -1,4 +1,4 @@
-![](./public/Cover.png)
+[![](./public/Cover.png)](https://regions-of-indonesia.netlify.app)
 
 # Regions of Indonesia
 
