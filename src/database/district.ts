@@ -1,14 +1,14 @@
 import { Districts } from "@regions-of-indonesia/data";
 
 import type { CodeName } from "./@types";
-import { slice, split, asArray, asFuse, cache } from "./@utilities";
+import { slice, split, asArray, asFuse, memoryCache } from "./@utilities";
 
 const ARRAY = asArray(Districts);
 const FUSE = asFuse(ARRAY);
 
-const DistrictCache = cache("district");
-const DistrictsCache = cache("districts");
-const SearchDistrictsCache = cache("search-districts");
+const DistrictCache = memoryCache("district");
+const DistrictsCache = memoryCache("districts");
+const SearchDistrictsCache = memoryCache("search-districts");
 
 const District = {
   async findByCode(code: string): Promise<CodeName | undefined> {
@@ -34,12 +34,13 @@ const District = {
 
   async search(text: string): Promise<CodeName[]> {
     const cached = await SearchDistrictsCache.get(text);
-
-    if (cached) {
-      return cached;
-    }
+    if (cached) return cached;
 
     return await SearchDistrictsCache.set(text, FUSE.search(text));
+  },
+
+  async length(): Promise<number> {
+    return ARRAY.length;
   },
 };
 

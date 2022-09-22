@@ -246,9 +246,7 @@ const RootRoutes = async (fastify: FastifyInstance) => {
     };
   }>("/search", async (request, reply) => {
     const { text } = request.query;
-
     if (!isTypeofString(text)) throw reply.badRequest();
-
     return {
       provinces: await Province.search(text),
       districts: await District.search(text),
@@ -263,9 +261,7 @@ const RootRoutes = async (fastify: FastifyInstance) => {
     };
   }>("/search/provinces", async (request, reply) => {
     const { text } = request.query;
-
     if (!isTypeofString(text)) throw reply.badRequest();
-
     return await Province.search(text);
   });
 
@@ -275,9 +271,7 @@ const RootRoutes = async (fastify: FastifyInstance) => {
     };
   }>("/search/districts", async (request, reply) => {
     const { text } = request.query;
-
     if (!isTypeofString(text)) throw reply.badRequest();
-
     return await District.search(text);
   });
 
@@ -287,9 +281,7 @@ const RootRoutes = async (fastify: FastifyInstance) => {
     };
   }>("/search/subdistricts", async (request, reply) => {
     const { text } = request.query;
-
     if (!isTypeofString(text)) throw reply.badRequest();
-
     return await Subdistrict.search(text);
   });
 
@@ -299,10 +291,21 @@ const RootRoutes = async (fastify: FastifyInstance) => {
     };
   }>("/search/villages", async (request, reply) => {
     const { text } = request.query;
-
     if (!isTypeofString(text)) throw reply.badRequest();
-
     return await Village.search(text);
+  });
+
+  // STATS
+
+  fastify.get("/stats", async () => {
+    return {
+      count: {
+        provinces: await Province.length(),
+        districts: await District.length(),
+        subdistricts: await Subdistrict.length(),
+        villages: await Village.length(),
+      },
+    };
   });
 };
 

@@ -18,29 +18,26 @@ function asFuse(list: readonly CodeName[]) {
   const fuse = new Fuse(list, { includeScore: true, keys: ["name"], threshold: 0.2 });
 
   return {
-    search: (text: string) => {
+    search(text: string) {
       return fuse.search(text).map(pickItemMapFnFromFuseResult).slice(0, 100);
     },
   };
 }
 
-const TTL = 1 * /** hours */ 20 * /** minutes */ 60 * /** seconds */ 1000; /** milliseconds */
-const cache = (namespace: string, ttl: number = TTL) => {
+const TTL = 60 * 1000; /** one minutes */
+const memoryCache = (namespace: string, ttl: number = TTL) => {
   const keyv = new Keyv<any>({ namespace });
 
   return {
-    get: async (key: string) => await keyv.get(key),
-    set: async <T extends any>(key: string, value: T) => {
+    async get(key: string) {
+      return await keyv.get(key);
+    },
+    async set<T extends any>(key: string, value: T) {
       await keyv.set(key, value, ttl);
       return value;
-    },
-    size: async () => {
-      const set = new Set<string>();
-      for await (const [key] of keyv.iterator()) set.add(key);
-      return set.size;
     },
   };
 };
 
 export { join, split, slice };
-export { asArray, asFuse, cache };
+export { asArray, asFuse, memoryCache };

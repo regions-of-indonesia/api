@@ -7,6 +7,7 @@ app
   .then((address) => {
     console.log(`[@regions-of-indonesia/api]:${address}`);
   })
-  .catch(() => {
+  .catch((error) => {
+    console.error(error);
     process.exit(1);
   });

@@ -1,13 +1,13 @@
 import { Provinces } from "@regions-of-indonesia/data";
 
 import type { CodeName } from "./@types";
-import { asArray, asFuse, cache } from "./@utilities";
+import { asArray, asFuse, memoryCache } from "./@utilities";
 
 const ARRAY = asArray(Provinces);
 const FUSE = asFuse(ARRAY);
 
-const ProvinceCache = cache("province");
-const SearchProvincesCache = cache("search-provinces");
+const ProvinceCache = memoryCache("province");
+const SearchProvincesCache = memoryCache("search-provinces");
 
 const Province = {
   async all(): Promise<CodeName[]> {
@@ -26,12 +26,13 @@ const Province = {
 
   async search(text: string): Promise<CodeName[]> {
     const cached = await SearchProvincesCache.get(text);
-
-    if (cached) {
-      return cached;
-    }
+    if (cached) return cached;
 
     return await SearchProvincesCache.set(text, FUSE.search(text));
+  },
+
+  async length(): Promise<number> {
+    return ARRAY.length;
   },
 };
 
