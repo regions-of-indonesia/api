@@ -3,9 +3,16 @@ import Fuse from "fuse.js";
 
 import type { CodeName } from "./@types";
 
-const join = { codes: (values: string[]) => values.join(".") };
-const split = { code: (value: string) => value.split(".") };
-const slice = { code: (value: string, slicer: number) => join.codes(split.code(value).slice(0, slicer)) };
+const join = {
+  codes: (values: string[]) => values.join("."),
+};
+const split = {
+  code: (value: string) => value.split("."),
+};
+const slice = {
+  codes: (values: string[], end: number) => values.slice(0, end),
+  code: (value: string, end: number) => join.codes(split.code(value).slice(0, end)),
+};
 
 function asArray(record: Record<string, string>): CodeName[] {
   return Object.entries(record).map(([code, name]) => ({ code, name }));

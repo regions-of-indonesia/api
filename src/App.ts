@@ -11,6 +11,10 @@ class App {
   #host: string;
   #port: number;
 
+  public get fastify() {
+    return this.#instance;
+  }
+
   constructor({ host, port }: { host: string; port: number }) {
     this.#instance = fastify();
 
