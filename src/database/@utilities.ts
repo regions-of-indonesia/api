@@ -35,7 +35,7 @@ const TTL = 10 * 60 * 1000; /** ten minutes */
 type MemoryCacheOptions = {
   permanentKeys?: string[];
 };
-const memoryCache = (namespace: string, options: MemoryCacheOptions = {}) => {
+function memoryCache(namespace: string, options: MemoryCacheOptions = {}) {
   const keyv = new Keyv<any>({ namespace });
 
   const { permanentKeys = [] } = options;
@@ -49,7 +49,7 @@ const memoryCache = (namespace: string, options: MemoryCacheOptions = {}) => {
       return value;
     },
   };
-};
+}
 
 export { join, split, slice };
 export { asArray, asFuse, memoryCache };
