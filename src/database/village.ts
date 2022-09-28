@@ -2,13 +2,14 @@ import { Villages } from "@regions-of-indonesia/data";
 
 import type { CodeName } from "./@types";
 import { slice, split, asArray, asFuse, memoryCache } from "./@utilities";
+import { permanentSearchKeys } from "./@shared";
 
 const ARRAY = asArray(Villages);
 const FUSE = asFuse(ARRAY);
 
 const VillageCache = memoryCache("village");
 const VillagesCache = memoryCache("villages");
-const SearchVillagesCache = memoryCache("search-villages");
+const SearchVillagesCache = memoryCache("search-villages", { permanentKeys: permanentSearchKeys });
 
 const Village = {
   async findByCode(code: string): Promise<CodeName | undefined> {

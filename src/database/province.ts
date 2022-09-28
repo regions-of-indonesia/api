@@ -2,12 +2,13 @@ import { Provinces } from "@regions-of-indonesia/data";
 
 import type { CodeName } from "./@types";
 import { asArray, asFuse, memoryCache } from "./@utilities";
+import { permanentSearchKeys } from "./@shared";
 
 const ARRAY = asArray(Provinces);
 const FUSE = asFuse(ARRAY);
 
 const ProvinceCache = memoryCache("province");
-const SearchProvincesCache = memoryCache("search-provinces");
+const SearchProvincesCache = memoryCache("search-provinces", { permanentKeys: permanentSearchKeys });
 
 const Province = {
   async all(): Promise<CodeName[]> {

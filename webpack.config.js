@@ -16,7 +16,7 @@ const plugins = {
     configFile: workspace("tsconfig.json"),
   }),
   nodemon: new NodemonPlugin({
-    script: "./dist/index.js",
+    script: "./index.start.js",
     watch: workspace("dist"),
     ext: "js",
     delay: 1000,
@@ -25,7 +25,8 @@ const plugins = {
 
 module.exports = (env) => {
   /** @type {import('webpack').Configuration['mode']} */
-  const mode = Boolean(env?.production) ? "production" : "development";
+  // const mode = Boolean(env?.production) ? "production" : "development";
+  const mode = "production";
 
   /** @type {import('webpack').Configuration} */
   const config = {
@@ -36,8 +37,18 @@ module.exports = (env) => {
     externalsPresets: { node: true },
     module: { rules: [{ test: /\.ts/, use: "ts-loader", exclude: /node_modules/ }] },
     resolve: { extensions: [".ts"], plugins: [plugins.tsconfigpaths] },
-    output: { filename: "index.js", path: workspace("dist") },
+    output: {
+      library: {
+        name: "regionsofindonesia",
+        type: "global",
+      },
+      filename: "index.js",
+      path: workspace("dist"),
+    },
     plugins: [plugins.nodemon],
+    optimization: {
+      mangleExports: false,
+    },
   };
 
   return config;

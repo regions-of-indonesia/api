@@ -2,13 +2,14 @@ import { Subdistricts } from "@regions-of-indonesia/data";
 
 import type { CodeName } from "./@types";
 import { slice, split, asArray, asFuse, memoryCache } from "./@utilities";
+import { permanentSearchKeys } from "./@shared";
 
 const ARRAY = asArray(Subdistricts);
 const FUSE = asFuse(ARRAY);
 
 const SubdistrictCache = memoryCache("subdistrict");
 const SubdistrictsCache = memoryCache("subdistricts");
-const SearchSubdistrictsCache = memoryCache("search-subdistricts");
+const SearchSubdistrictsCache = memoryCache("search-subdistricts", { permanentKeys: permanentSearchKeys });
 
 const Subdistrict = {
   async findByCode(code: string): Promise<CodeName | undefined> {

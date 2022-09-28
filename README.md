@@ -1,4 +1,4 @@
-[![](./public/Cover.png)](https://regions-of-indonesia.netlify.app)
+[![cover]][site]
 
 <p align="center">
   <a href="https://indonesia-api.netlify.app/regions-of-indonesia"><img src="https://raw.githubusercontent.com/indonesia-api/indonesia-api/main/public/Badge.svg?sanitize=true" /></a>
@@ -10,20 +10,7 @@ Regions of Indonesia
 
 ## Features
 
-- Support both [Dynamic API](https://github.com/regions-of-indonesia/api) & [Static API](https://github.com/regions-of-indonesia/static-api)
-- Search API for Dynamic API
-- [Javascript client SDK](https://github.com/regions-of-indonesia/client)
-- Documented with in-app [DEMO](https://regions-of-indonesia.netlify.app)
-
-## Roadmap
-
-- [x] Plain data
-- [x] Dynamic API & Static API
-- [x] Javascript Client SDK
-- [ ] Documentation
-- [ ] PHP Client SDK
-- [ ] Dart Client SDK
-- [ ] Python Client SDK
+- Integrated with [Javascript client SDK][github:client]
 
 ## Types
 
@@ -43,19 +30,17 @@ type SearchResult = {
 
 ## Endpoints
 
-### Dynamic API
-
 | Endpoint                                                                                                         | Return type  |
 | ---------------------------------------------------------------------------------------------------------------- | ------------ |
 | [/provinces](https://regions-of-indonesia-flamrdevs.koyeb.app/provinces)                                         | CodeName[]   |
 | [/province/11](https://regions-of-indonesia-flamrdevs.koyeb.app/province/11)                                     | CodeName     |
-| [/province/11/districts](https://regions-of-indonesia-flamrdevs.koyeb.app/province/11/districts)                 | CodeName     |
+| [/province/11/districts](https://regions-of-indonesia-flamrdevs.koyeb.app/province/11/districts)                 | CodeName[]   |
 | [/districts/11](https://regions-of-indonesia-flamrdevs.koyeb.app/districts/11)                                   | CodeName[]   |
 | [/district/11.01](https://regions-of-indonesia-flamrdevs.koyeb.app/district/11.01)                               | CodeName     |
-| [/district/11.01/subdistricts](https://regions-of-indonesia-flamrdevs.koyeb.app/district/11.01/subdistricts)     | CodeName     |
+| [/district/11.01/subdistricts](https://regions-of-indonesia-flamrdevs.koyeb.app/district/11.01/subdistricts)     | CodeName[]   |
 | [/subdistricts/11.01](https://regions-of-indonesia-flamrdevs.koyeb.app/subdistricts/11.01)                       | CodeName[]   |
 | [/subdistrict/11.01.01](https://regions-of-indonesia-flamrdevs.koyeb.app/subdistrict/11.01.01)                   | CodeName     |
-| [/subdistrict/11.01.01/villages](https://regions-of-indonesia-flamrdevs.koyeb.app/subdistrict/11.01.01/villages) | CodeName     |
+| [/subdistrict/11.01.01/villages](https://regions-of-indonesia-flamrdevs.koyeb.app/subdistrict/11.01.01/villages) | CodeName[]   |
 | [/villages/11.01.01](https://regions-of-indonesia-flamrdevs.koyeb.app/villages/11.01.01)                         | CodeName[]   |
 | [/village/11.01.01.2001](https://regions-of-indonesia-flamrdevs.koyeb.app/village/11.01.01.2001)                 | CodeName     |
 | [/search?text=aceh](https://regions-of-indonesia-flamrdevs.koyeb.app/search?text=aceh)                           | SearchResult |
@@ -66,8 +51,35 @@ type SearchResult = {
 
 ## Support
 
-- Donate [Ko-Fi](https://ko-fi.com/flamrdevs) or [Trakteer](https://trakteer.id/flamrdevs)
+[![][support:ko-fi-button]][support:ko-fi]
+
+[![][support:trakteer-button]][support:trakteer]
 
 ## LICENSE
 
 GPL-3.0
+
+[cover]: https://raw.githubusercontent.com/regions-of-indonesia/regions-of-indonesia/main/public/Cover.png?sanitize=true
+[site]: https://regions-of-indonesia.netlify.app
+[docs]: https://regions-of-indonesia-docs.netlify.app
+[github:api]: https://github.com/regions-of-indonesia/api
+[github:static-api]: https://github.com/regions-of-indonesia/static-api
+[github:site]: https://github.com/regions-of-indonesia/site
+[github:docs]: https://github.com/regions-of-indonesia/docs
+[github:client]: https://github.com/regions-of-indonesia/client
+[github:data]: https://github.com/regions-of-indonesia/data
+[github:php-client]: https://github.com/regions-of-indonesia/php-client
+[github:dart-client]: https://github.com/regions-of-indonesia/dart-client
+[github:python-client]: https://github.com/regions-of-indonesia/python-client
+[github:swr]: https://github.com/regions-of-indonesia/swr
+[github:react-query]: https://github.com/regions-of-indonesia/react-query
+[github:solid-query]: https://github.com/regions-of-indonesia/solid-query
+[github:example-react-ts]: https://github.com/regions-of-indonesia/example-react-ts
+[github:example-react-ts-swr]: https://github.com/regions-of-indonesia/example-react-ts-swr
+[github:example-react-ts-query]: https://github.com/regions-of-indonesia/example-react-ts-query
+[github:example-solid-ts]: https://github.com/regions-of-indonesia/example-solid-ts
+[github:example-solid-ts-query]: https://github.com/regions-of-indonesia/example-solid-ts-query
+[support:ko-fi]: https://ko-fi.com/flamrdevs
+[support:ko-fi-button]: https://flamrdevs.vercel.app/ko-fi.png
+[support:trakteer]: https://trakteer.id/flamrdevs
+[support:trakteer-button]: https://flamrdevs.vercel.app/trakteer.png

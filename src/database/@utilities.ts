@@ -31,16 +31,21 @@ function asFuse(list: readonly CodeName[]) {
   };
 }
 
-const TTL = 60 * 1000; /** one minutes */
-const memoryCache = (namespace: string, ttl: number = TTL) => {
+const TTL = 10 * 60 * 1000; /** ten minutes */
+type MemoryCacheOptions = {
+  permanentKeys?: string[];
+};
+const memoryCache = (namespace: string, options: MemoryCacheOptions = {}) => {
   const keyv = new Keyv<any>({ namespace });
+
+  const { permanentKeys = [] } = options;
 
   return {
     async get(key: string) {
       return await keyv.get(key);
     },
     async set<T extends any>(key: string, value: T) {
-      await keyv.set(key, value, ttl);
+      await keyv.set(key, value, permanentKeys.includes(key) ? undefined : TTL);
       return value;
     },
   };

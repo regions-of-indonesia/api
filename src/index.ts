@@ -1,13 +1,14 @@
-import App from "./App";
+import fastify from "fastify";
 
-const app = new App({ host: "0.0.0.0", port: Number(process.env.PORT || 3000) });
+import { fastifyCorsPlugin, fastifyHelmetPlugin, fastifySensiblePlugin } from "~/plugins";
 
-app
-  .start()
-  .then((address) => {
-    console.log(`[@regions-of-indonesia/api]:${address}`);
-  })
-  .catch((error) => {
-    console.error(error);
-    process.exit(1);
-  });
+import RootRoutes from "~/routes";
+
+const app = fastify();
+
+app.register(fastifyCorsPlugin);
+app.register(fastifyHelmetPlugin);
+app.register(fastifySensiblePlugin);
+app.register(RootRoutes);
+
+export { app };

@@ -2,12 +2,12 @@
   "name": "@regions-of-indonesia/api",
   "version": "1.0.0",
   "description": "Regions of Indonesia API",
-  "main": "dist/index.js",
+  "main": "index.start.js",
   "engines": {
     "node": "16.x"
   },
   "scripts": {
-    "start": "node dist/index.js",
+    "start": "node index.start.js",
     "build": "webpack --env production",
     "dev": "webpack --watch"
   },
@@ -18,10 +18,10 @@
     "@fastify/cors": "^8.1.0",
     "@fastify/helmet": "^10.0.0",
     "@fastify/sensible": "^5.1.1",
-    "@regions-of-indonesia/data": "^1.2.0",
+    "@regions-of-indonesia/data": "^2.0.0",
     "fastify": "^4.5.3",
     "fuse.js": "^6.6.2",
-    "javascript-yesterday": "^1.0.1-alpha.6",
+    "javascript-yesterday": "^1.1.0",
     "keyv": "^4.5.0",
     "ramda": "^0.28.0"
   },

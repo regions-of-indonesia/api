@@ -102,10 +102,10 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@regions-of-indonesia/data@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@regions-of-indonesia/data/-/data-1.2.0.tgz#34e9b32b06c015c71cef7f4f15fcec4b4a2da491"
-  integrity sha512-w/KFkhB7PVmXKNL1lW7L0W4DnfWO3uDOCBSMzGMTCeLK7opDEMWuoNeFyeZcQcX0DxfY8Puc0kV02yED+/Jtcg==
+"@regions-of-indonesia/data@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@regions-of-indonesia/data/-/data-2.0.0.tgz#7d265b4b0791410ebf9c01ee2716115ff40da941"
+  integrity sha512-45h7sax8sCJ8HUk3XaDxrgNVQbNAyyB6sqNDToL8rSZEofcolX6D2qD6434ewNnxvvoHcQG9YHJf9JD7xawbow==
 
 "@types/eslint-scope@^3.7.3":
   version "3.7.4"
@@ -871,10 +871,10 @@ isobject@^3.0.1:
   resolved "https://registry.yarnpkg.com/isobject/-/isobject-3.0.1.tgz#4e431e92b11a9731636aa1f9c8d1ccbcfdab78df"
   integrity sha512-WhB9zCku7EGTj/HQQRz5aUQEUeoQZH2bWcltRErOpymJ4boYE6wL9Tbr23krRPSZ+C5zqNSrSw+Cc7sZZ4b7vg==
 
-javascript-yesterday@^1.0.1-alpha.6:
-  version "1.0.1-alpha.6"
-  resolved "https://registry.yarnpkg.com/javascript-yesterday/-/javascript-yesterday-1.0.1-alpha.6.tgz#31f9ab2d18cac062140f5043a4d103c28592f924"
-  integrity sha512-/wJp8kl3KBv7Pb+d6CpPQ645b9vGjhHyinGpGGprGhtn6WRqw1yKY2Z1GlAZ6MyuaJlSq7HMaXs7aRyDQ6qtfQ==
+javascript-yesterday@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/javascript-yesterday/-/javascript-yesterday-1.1.0.tgz#d47797dcc4fce3630db0eb9bca26ba8aa3d22dda"
+  integrity sha512-KlTrNpmN35/AkMWERLFl8BMGih5XzUI0A527RtUWa3c/wvo0RiuUo+R0rXorbl46NmawEgO1cDbjt3pr+jGbBQ==
 
 jest-worker@^27.4.5:
   version "27.5.1"
