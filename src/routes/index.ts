@@ -14,9 +14,9 @@ import StatsRoutes from "./stats";
 import RegionRoutes from "./region";
 
 const RootRoutes = async (fastify: FastifyInstance) => {
-  fastify.addHook("preHandler", async (_request, reply) => {
-    reply.cacheControl("max-age", "1d");
-  });
+  // fastify.addHook("preHandler", async (_request, reply) => {
+  //   reply.cacheControl("max-age", "1d");
+  // });
 
   fastify.get("/", async () => {
     return {

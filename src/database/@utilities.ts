@@ -26,7 +26,7 @@ function asFuse(list: readonly CodeName[]) {
 
   return {
     search(text: string) {
-      return fuse.search(text).map(pickItemMapFnFromFuseResult).slice(0, 100);
+      return fuse.search(text).map(pickItemMapFnFromFuseResult).slice(0, 25);
     },
   };
 }
