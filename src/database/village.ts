@@ -43,6 +43,12 @@ const Village = {
   async length(): Promise<number> {
     return ARRAY.length;
   },
+
+  cache: {
+    async searchVillagesKeys() {
+      return await SearchVillagesCache.keys();
+    },
+  },
 };
 
 export { Village };

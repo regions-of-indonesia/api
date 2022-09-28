@@ -43,6 +43,12 @@ const Subdistrict = {
   async length(): Promise<number> {
     return ARRAY.length;
   },
+
+  cache: {
+    async searchSubdistrictsKeys() {
+      return await SearchSubdistrictsCache.keys();
+    },
+  },
 };
 
 export { Subdistrict };

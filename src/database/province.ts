@@ -35,6 +35,12 @@ const Province = {
   async length(): Promise<number> {
     return ARRAY.length;
   },
+
+  cache: {
+    async searchProvincesKeys() {
+      return await SearchProvincesCache.keys();
+    },
+  },
 };
 
 export { Province };

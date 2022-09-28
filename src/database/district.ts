@@ -43,6 +43,12 @@ const District = {
   async length(): Promise<number> {
     return ARRAY.length;
   },
+
+  cache: {
+    async searchDistrictsKeys() {
+      return await SearchDistrictsCache.keys();
+    },
+  },
 };
 
 export { District };

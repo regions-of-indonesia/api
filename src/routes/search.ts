@@ -59,6 +59,15 @@ const SearchRoutes = async (fastify: FastifyInstance) => {
     if (!isTypeofString(text)) throw reply.badRequest();
     return await Village.search(text);
   });
+
+  fastify.get("/keys", async () => {
+    return {
+      provinces: await Province.cache.searchProvincesKeys(),
+      districts: await District.cache.searchDistrictsKeys(),
+      subdistricts: await Subdistrict.cache.searchSubdistrictsKeys(),
+      villages: await Village.cache.searchVillagesKeys(),
+    };
+  });
 };
 
 export default SearchRoutes;

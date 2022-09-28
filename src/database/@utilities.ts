@@ -1,6 +1,8 @@
 import Keyv from "keyv";
 import Fuse from "fuse.js";
 
+import { isTypeofString } from "javascript-yesterday";
+
 import type { CodeName } from "./@types";
 
 const join = {
@@ -31,7 +33,7 @@ function asFuse(list: readonly CodeName[]) {
   };
 }
 
-const TTL = 10 * 60 * 1000; /** ten minutes */
+const TTL = 7 * 60 * 1000; /** seven minutes */
 type MemoryCacheOptions = {
   permanentKeys?: string[];
 };
@@ -46,7 +48,15 @@ function memoryCache(namespace: string, options: MemoryCacheOptions = {}) {
     },
     async set<T extends any>(key: string, value: T) {
       await keyv.set(key, value, permanentKeys.includes(key) ? undefined : TTL);
+
       return value;
+    },
+    async keys() {
+      let list: string[] = [];
+      for await (const [key] of keyv.iterator()) {
+        if (isTypeofString(key)) list.push(key);
+      }
+      return list;
     },
   };
 }

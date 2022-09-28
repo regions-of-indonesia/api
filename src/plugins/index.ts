@@ -4,15 +4,6 @@ import fastifyCors from "@fastify/cors";
 import fastifyHelmet from "@fastify/helmet";
 import fastifySensible from "@fastify/sensible";
 
-import { setupDatabase } from "~/database";
-
-const fastifySetupDatabasePlugin = fp(
-  async () => {
-    await setupDatabase();
-  },
-  { name: "app/setup-database" }
-);
-
 const fastifyCorsPlugin = fp(
   async (fastify) => {
     await fastify.register(fastifyCors, { origin: "*" });
@@ -34,4 +25,4 @@ const fastifySensiblePlugin = fp(
   { name: "app/sensible" }
 );
 
-export { fastifySetupDatabasePlugin, fastifyCorsPlugin, fastifyHelmetPlugin, fastifySensiblePlugin };
+export { fastifyCorsPlugin, fastifyHelmetPlugin, fastifySensiblePlugin };
