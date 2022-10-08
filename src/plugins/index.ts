@@ -2,6 +2,7 @@ import fp from "fastify-plugin";
 
 import fastifyCors from "@fastify/cors";
 import fastifyHelmet from "@fastify/helmet";
+import fastifyCompress from "@fastify/compress";
 import fastifySensible from "@fastify/sensible";
 
 const fastifyCorsPlugin = fp(
@@ -18,6 +19,13 @@ const fastifyHelmetPlugin = fp(
   { name: "app/helmet" }
 );
 
+const fastifyCompressPlugin = fp(
+  async (fastify) => {
+    await fastify.register(fastifyCompress);
+  },
+  { name: "app/compress" }
+);
+
 const fastifySensiblePlugin = fp(
   async (fastify) => {
     await fastify.register(fastifySensible);
@@ -25,4 +33,4 @@ const fastifySensiblePlugin = fp(
   { name: "app/sensible" }
 );
 
-export { fastifyCorsPlugin, fastifyHelmetPlugin, fastifySensiblePlugin };
+export { fastifyCorsPlugin, fastifyHelmetPlugin, fastifyCompressPlugin, fastifySensiblePlugin };
