@@ -1,15 +1,20 @@
 import { Villages } from "@regions-of-indonesia/data";
 
 import type { CodeName } from "./@types";
-import { slice, split, asArray, asFuse, memoryCache } from "./@utilities";
+import { slice, split, asArray, asLyra, memoryCache } from "./@utilities";
 import { permanentSearchKeys } from "./@shared";
 
 const ARRAY = asArray(Villages);
-const FUSE = asFuse(ARRAY);
+// const FUSE = asFuse(ARRAY);
+const LYRA = asLyra(ARRAY);
 
 const VillageCache = memoryCache("village");
 const VillagesCache = memoryCache("villages");
 const SearchVillagesCache = memoryCache("search-villages", { permanentKeys: permanentSearchKeys });
+
+async function setupSearchVillage() {
+  await LYRA.setup();
+}
 
 const Village = {
   async findByCode(code: string): Promise<CodeName | undefined> {
@@ -37,7 +42,7 @@ const Village = {
     const cached = await SearchVillagesCache.get(text);
     if (cached) return cached;
 
-    return await SearchVillagesCache.set(text, FUSE.search(text));
+    return await SearchVillagesCache.set(text, LYRA.search(text));
   },
 
   async length(): Promise<number> {
@@ -51,4 +56,5 @@ const Village = {
   },
 };
 
+export { setupSearchVillage };
 export { Village };

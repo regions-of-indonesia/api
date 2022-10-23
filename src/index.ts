@@ -5,6 +5,7 @@ import {
   fastifyHelmetPlugin,
   // fastifyCompressPlugin,
   fastifySensiblePlugin,
+  selfSearchPlugin,
 } from "~/plugins";
 
 import RootRoutes from "~/routes";
@@ -15,6 +16,7 @@ app.register(fastifyCorsPlugin);
 app.register(fastifyHelmetPlugin);
 // app.register(fastifyCompressPlugin);
 app.register(fastifySensiblePlugin);
+app.register(selfSearchPlugin);
 app.register(RootRoutes);
 
 export { app };

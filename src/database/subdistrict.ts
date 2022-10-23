@@ -1,15 +1,20 @@
 import { Subdistricts } from "@regions-of-indonesia/data";
 
 import type { CodeName } from "./@types";
-import { slice, split, asArray, asFuse, memoryCache } from "./@utilities";
+import { slice, split, asArray, asLyra, memoryCache } from "./@utilities";
 import { permanentSearchKeys } from "./@shared";
 
 const ARRAY = asArray(Subdistricts);
-const FUSE = asFuse(ARRAY);
+// const FUSE = asFuse(ARRAY);
+const LYRA = asLyra(ARRAY);
 
 const SubdistrictCache = memoryCache("subdistrict");
 const SubdistrictsCache = memoryCache("subdistricts");
 const SearchSubdistrictsCache = memoryCache("search-subdistricts", { permanentKeys: permanentSearchKeys });
+
+async function setupSearchSubdistrict() {
+  await LYRA.setup();
+}
 
 const Subdistrict = {
   async findByCode(code: string): Promise<CodeName | undefined> {
@@ -37,7 +42,7 @@ const Subdistrict = {
     const cached = await SearchSubdistrictsCache.get(text);
     if (cached) return cached;
 
-    return await SearchSubdistrictsCache.set(text, FUSE.search(text));
+    return await SearchSubdistrictsCache.set(text, LYRA.search(text));
   },
 
   async length(): Promise<number> {
@@ -51,4 +56,5 @@ const Subdistrict = {
   },
 };
 
+export { setupSearchSubdistrict };
 export { Subdistrict };

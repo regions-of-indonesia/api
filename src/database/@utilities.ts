@@ -1,5 +1,6 @@
 import Keyv from "keyv";
-import Fuse from "fuse.js";
+import { create, insertBatch, search } from "@lyrasearch/lyra";
+import type { RetrievedDoc } from "@lyrasearch/lyra";
 
 import { isTypeofString } from "javascript-yesterday";
 
@@ -20,15 +21,21 @@ function asArray(record: Record<string, string>): CodeName[] {
   return Object.entries(record).map(([code, name]) => ({ code, name }));
 }
 
-function pickItemMapFnFromFuseResult(result: Fuse.FuseResult<CodeName>) {
-  return result.item;
+type TypeToSchema<T extends { [key: string]: string | number | boolean }> = {
+  [K in keyof T]: T[K] extends string ? "string" : T[K] extends number ? "number" : T[K] extends boolean ? "boolean" : never;
+};
+function pickHitsMapFnFromLyraHitsResult<T extends TypeToSchema<CodeName>>({ code, name }: RetrievedDoc<T>) {
+  return { code, name };
 }
-function asFuse(list: readonly CodeName[]) {
-  const fuse = new Fuse(list, { includeScore: true, keys: ["name"], threshold: 0.2 });
+function asLyra(list: readonly CodeName[]) {
+  const db = create({ schema: { code: "string", name: "string" } });
 
   return {
-    search(text: string) {
-      return fuse.search(text).map(pickItemMapFnFromFuseResult).slice(0, 25);
+    async setup() {
+      await insertBatch(db, list.slice());
+    },
+    search(text: string): CodeName[] {
+      return search(db, { term: text, properties: ["name"] }).hits.map(pickHitsMapFnFromLyraHitsResult);
     },
   };
 }
@@ -62,4 +69,4 @@ function memoryCache(namespace: string, options: MemoryCacheOptions = {}) {
 }
 
 export { join, split, slice };
-export { asArray, asFuse, memoryCache };
+export { asArray, asLyra, memoryCache };
