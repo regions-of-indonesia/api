@@ -1,19 +1,14 @@
 import { Provinces } from "@regions-of-indonesia/data";
 
 import type { CodeName } from "./@types";
-import { asArray, asLyra, memoryCache } from "./@utilities";
+import { asArray, asFuse, memoryCache } from "./@utilities";
 import { permanentSearchKeys } from "./@shared";
 
 const ARRAY = asArray(Provinces);
-// const FUSE = asFuse(ARRAY);
-const LYRA = asLyra(ARRAY);
+const FUSE = asFuse(ARRAY);
 
 const ProvinceCache = memoryCache("province");
 const SearchProvincesCache = memoryCache("search-provinces", { permanentKeys: permanentSearchKeys });
-
-async function setupSearchProvince() {
-  await LYRA.setup();
-}
 
 const Province = {
   async all(): Promise<CodeName[]> {
@@ -34,7 +29,7 @@ const Province = {
     const cached = await SearchProvincesCache.get(text);
     if (cached) return cached;
 
-    return await SearchProvincesCache.set(text, LYRA.search(text));
+    return await SearchProvincesCache.set(text, FUSE.search(text));
   },
 
   async length(): Promise<number> {
@@ -48,5 +43,4 @@ const Province = {
   },
 };
 
-export { setupSearchProvince };
 export { Province };

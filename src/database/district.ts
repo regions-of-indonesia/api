@@ -1,20 +1,15 @@
 import { Districts } from "@regions-of-indonesia/data";
 
 import type { CodeName } from "./@types";
-import { slice, split, asArray, asLyra, memoryCache } from "./@utilities";
+import { slice, split, asArray, asFuse, memoryCache } from "./@utilities";
 import { permanentSearchKeys } from "./@shared";
 
 const ARRAY = asArray(Districts);
-// const FUSE = asFuse(ARRAY);
-const LYRA = asLyra(ARRAY);
+const FUSE = asFuse(ARRAY);
 
 const DistrictCache = memoryCache("district");
 const DistrictsCache = memoryCache("districts");
 const SearchDistrictsCache = memoryCache("search-districts", { permanentKeys: permanentSearchKeys });
-
-async function setupSearchDistrict() {
-  await LYRA.setup();
-}
 
 const District = {
   async findByCode(code: string): Promise<CodeName | undefined> {
@@ -42,7 +37,7 @@ const District = {
     const cached = await SearchDistrictsCache.get(text);
     if (cached) return cached;
 
-    return await SearchDistrictsCache.set(text, LYRA.search(text));
+    return await SearchDistrictsCache.set(text, FUSE.search(text));
   },
 
   async length(): Promise<number> {
@@ -56,5 +51,4 @@ const District = {
   },
 };
 
-export { setupSearchDistrict };
 export { District };
