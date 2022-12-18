@@ -4,13 +4,15 @@
   <a href="https://indonesia-api.netlify.app/regions-of-indonesia"><img src="https://raw.githubusercontent.com/indonesia-api/indonesia-api/main/public/Badge.svg?sanitize=true" /></a>
 </p>
 
+<img src="https://hiiits.deta.dev/hit/regions-of-indonesia/api?" width="100%" heigth="10px" />
+
 # Regions of Indonesia
 
 Regions of Indonesia
 
 ## Features
 
-- Integrated with [Javascript client SDK][github:client]
+- Integrated with [Javascript client][github:client]
 
 ## Types
 
